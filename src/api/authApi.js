@@ -25,3 +25,19 @@ export async function fetchMe(token) {
     },
   });
 }
+
+export async function fetchGmailMessages(token, max = 10, filter = "bills") {
+  return apiRequest(`/auth/gmail/messages?max=${max}&filter=${encodeURIComponent(filter)}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export async function fetchSubscriptionEmails(token, max = 40) {
+  return apiRequest(`/auth/gmail/subscriptions?max=${max}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
