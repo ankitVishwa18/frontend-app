@@ -22,6 +22,3 @@ export function getApiUrl() {
   return API_URL;
 }
 
-export async function pingHealth() {
-  return apiRequest("/health");
-}
