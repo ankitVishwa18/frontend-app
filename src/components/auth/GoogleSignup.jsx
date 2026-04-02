@@ -1,4 +1,4 @@
-import { getGoogleAuthUrl } from "../../api/authApi";
+import { getGoogleAuthUrl } from "../../api/googleApi";
 
 function GoogleSignup() {
   return (

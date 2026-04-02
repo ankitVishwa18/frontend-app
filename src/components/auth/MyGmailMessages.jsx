@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { fetchSubscriptionEmails } from "../../api/authApi";
+import { fetchSubscriptionEmails } from "../../api/subscriptionApi";
 
 function MyGmailMessages() {
   const { token } = useAuth();

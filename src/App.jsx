@@ -11,19 +11,18 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/"
         element={
           <ProtectedRoute>
-            <Layout>
-              <Home />
-            </Layout>
+            <Layout />
           </ProtectedRoute>
         }
-      />
+      >
+        <Route path="/" element={<Home />} />
+        <Route path="/gmail" element={<GmailPage />} />
+      </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/oauth-success" element={<GoogleRedirect />} />
-      <Route path="/gmail" element={<GmailPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

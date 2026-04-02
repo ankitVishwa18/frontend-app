@@ -1,16 +1,8 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 
 function Home() {
-  const navigate = useNavigate();
-  const { logout } = useAuth();
   const { user, loading, error } = useUser();
-
-  function handleLogout() {
-    logout();
-    navigate("/login");
-  }
 
   if (error) {
     return <Navigate to="/login" replace />;
@@ -25,15 +17,21 @@ function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6 text-center">
-      <h1 className="text-7xl md:text-8xl font-black tracking-tight">Welcome {user.name}</h1>
-      <p className="text-slate-300 text-xl">You are logged in successfully.</p>
-      <button
-        onClick={handleLogout}
-        className="rounded-lg bg-red-500 hover:bg-red-400 text-white px-6 py-3 font-semibold"
-      >
-        Logout
-      </button>
+    <main className="min-h-screen p-6">
+      <section className="max-w-6xl mx-auto space-y-6">
+        <h1 className="text-4xl md:text-5xl font-black tracking-tight">Welcome {user.name}</h1>
+        <p className="text-slate-300">
+          Dashboard is now focused only on Gmail subscription and SaaS billing insights.
+        </p>
+
+        <div className="rounded-xl border border-slate-700 bg-slate-900/50 p-6">
+          <h2 className="text-xl font-semibold mb-2">Next Step</h2>
+          <p className="text-slate-300">
+            Open <span className="font-semibold text-cyan-300">Gmail Data</span> from the navbar to view subscription
+            classifications and billing summaries.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
