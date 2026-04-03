@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clearAuthToken, getAuthToken, setAuthToken } from "../utils/authStorage";
+import {
+  clearAuthToken,
+  getAuthToken,
+  getAuthUserFromToken,
+  setAuthToken,
+} from "../utils/authStorage";
 
+const initialToken = getAuthToken();
 const initialState = {
-  token: getAuthToken(),
-  user: null,
+  token: initialToken,
+  user: getAuthUserFromToken(initialToken),
 };
 
 const authSlice = createSlice({
@@ -13,7 +19,7 @@ const authSlice = createSlice({
     setCredentials(state, action) {
       const { token, user = null } = action.payload;
       state.token = token;
-      state.user = user;
+      state.user = user || getAuthUserFromToken(token);
       setAuthToken(token);
     },
     setUser(state, action) {

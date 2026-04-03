@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { useUser } from "../../hooks/useUser";
 
 function Navbar() {
   const navigate = useNavigate();
-  const { logout } = useAuth();
-  const { user } = useUser();
+  const { logout, user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
