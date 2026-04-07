@@ -3,8 +3,8 @@ import ProtectedRoute from "./middleware/ProtectedRoute";
 import Home from "./components/auth/Home";
 import Login from "./components/auth/Login";
 import GoogleRedirect from "./components/auth/GoogleRedirect";
+import MailPage from "./pages/MailMessagePage";
 import Layout from "./pages/Layout";
-import GmailPage from "./pages/GmailMessagePage";
 
 function App() {
   return (
@@ -17,7 +17,8 @@ function App() {
         }
       >
         <Route path="/" element={<Home />} />
-        <Route path="/gmail" element={<GmailPage />} />
+        <Route path="/mails" element={<MailPage />} />
+        <Route path="/gmail" element={<Navigate to="/mails" replace />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/oauth-success" element={<GoogleRedirect />} />

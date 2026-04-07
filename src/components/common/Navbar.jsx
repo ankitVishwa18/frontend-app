@@ -37,10 +37,10 @@ function Navbar() {
             Dashboard
           </Link>
           <Link
-            to="/gmail"
+            to="/mails"
             className="text-sm text-cyan-300 hover:text-cyan-200"
           >
-            Gmail Data
+            Mail Data
           </Link>
         </div>
 

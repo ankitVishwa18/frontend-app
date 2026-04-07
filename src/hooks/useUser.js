@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchMe } from "../api/authApi";
 import { useAuth } from "./useAuth";
 
@@ -6,15 +6,27 @@ export function useUser() {
   const { token, user, setUser, logout } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const attemptedProviderHydration = useRef(false);
 
   useEffect(() => {
-    if (!token || user) {
+    if (!token) {
+      attemptedProviderHydration.current = false;
+      return;
+    }
+
+    if (user?.provider) {
+      attemptedProviderHydration.current = true;
+      return;
+    }
+
+    if (user && attemptedProviderHydration.current) {
       return;
     }
 
     let isMounted = true;
 
     async function loadUser() {
+      attemptedProviderHydration.current = true;
       setLoading(true);
       setError("");
 
@@ -40,7 +52,7 @@ export function useUser() {
     return () => {
       isMounted = false;
     };
-  }, [token, user, setUser, logout]);
+  }, [token, user?.id, user?.provider, setUser, logout]);
 
   return { user, loading, error };
 }

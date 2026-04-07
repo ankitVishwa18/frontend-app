@@ -30,6 +30,7 @@ export function getAuthUserFromToken(token) {
       id: payload.id,
       name: payload.name || "",
       email: payload.email || "",
+      provider: payload.provider || null,
     };
   } catch (_error) {
     return null;
